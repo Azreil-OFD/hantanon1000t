@@ -245,10 +245,10 @@ function buildApiUrl(params) {
 
 
 function formatRequestData() {
-    if (searchName.value === "" || Object.keys(searchName.value).length === 0) {
-        toast.add({ severity: 'error', summary: 'Не заполненное поле', detail: 'Поле "Поиск по наименованию" объязательно!', life: 3000 });
-        return;
-    }
+    // if (searchName.value === "" || Object.keys(searchName.value).length === 0) {
+    //     toast.add({ severity: 'error', summary: 'Не заполненное поле', detail: 'Поле "Поиск по наименованию" объязательно!', life: 3000 });
+    //     return;
+    // }
 
     const requestData = {
         from_datetime: selectedDates.value.length >= 1 ? selectedDates.value[0].toISOString() : null,
@@ -261,18 +261,16 @@ function formatRequestData() {
         state: selectedStatus.value.length > 0 ? selectedStatus.value.map(item => item.code) : [selectedStatus.value],  // Состояния (массив кодов)
         page: 1,
     };
-    function btoaUTF8(str) {
-    return btoa(unescape(encodeURIComponent(str)));
-}
+    
 
-    const initData = JSON.stringify(useWebApp().initDataUnsafe) || '';
-    const base64InitData = btoaUTF8(initData);
+    console.log(useWebApp().initData)
+
     // Отправка данных через curl с использованием fetch API
     fetch('https://vcc-bot.cloudpub.ru/api/vcc/meetings/', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
-            'init-data': base64InitData, // Здесь передаем initialData пользователя
+            'init-data': useWebApp().initData, // Здесь передаем initialData пользователя
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(requestData),
