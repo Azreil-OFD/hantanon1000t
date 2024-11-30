@@ -261,12 +261,7 @@ function formatRequestData() {
         state: selectedStatus.value.length > 0 ? selectedStatus.value.map(item => item.code) : [selectedStatus.value],  // Состояния (массив кодов)
         page: 1,
     };
-
-    // Выводим сообщение, если есть данные для пользователя
-    if (userInitialData.value !== null) {
-        toast.add({ severity: 'info', summary: 'Вы вошли с телеграмма', detail: 'Поздравляю!', life: 3000 });
-    }
-    console.log(userInitialData.value)
+    console.log(useWebApp().initData)
     // Отправка данных через curl с использованием fetch API
     fetch('https://vcc-bot.cloudpub.ru/api/vcc/meetings/', {
         method: 'POST',
@@ -281,7 +276,8 @@ function formatRequestData() {
         .then(data => {
             // Обрабатываем ответ от сервера
             console.log('Success:', data);
-            toast.add({ severity: 'success', summary: 'Успешно отправлено', detail: 'Данные успешно отправлены.', life: 3000 });
+            useWebApp().close()
+
         })
         .catch(error => {
             // Обрабатываем ошибку при отправке данных
