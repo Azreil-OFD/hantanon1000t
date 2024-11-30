@@ -261,12 +261,14 @@ function formatRequestData() {
         state: selectedStatus.value.length > 0 ? selectedStatus.value.map(item => item.code) : [selectedStatus.value],  // Состояния (массив кодов)
         page: 1,
     };
+    const initData = JSON.stringify(useWebApp().initDataUnsafe) || '';
+    const base64InitData = btoa(initData);
     // Отправка данных через curl с использованием fetch API
     fetch('https://vcc-bot.cloudpub.ru/api/vcc/meetings/', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
-            'init-data': JSON.stringify(useWebApp().initDataUnsafe) || '', // Здесь передаем initialData пользователя
+            'init-data': base64InitData, // Здесь передаем initialData пользователя
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(requestData),
