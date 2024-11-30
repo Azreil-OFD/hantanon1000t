@@ -261,8 +261,12 @@ function formatRequestData() {
         state: selectedStatus.value.length > 0 ? selectedStatus.value.map(item => item.code) : [selectedStatus.value],  // Состояния (массив кодов)
         page: 1,
     };
+    function btoaUTF8(str) {
+    return btoa(unescape(encodeURIComponent(str)));
+}
+
     const initData = JSON.stringify(useWebApp().initDataUnsafe) || '';
-    const base64InitData = btoa(initData);
+    const base64InitData = btoaUTF8(initData);
     // Отправка данных через curl с использованием fetch API
     fetch('https://vcc-bot.cloudpub.ru/api/vcc/meetings/', {
         method: 'POST',
