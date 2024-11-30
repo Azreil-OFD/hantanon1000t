@@ -6,8 +6,7 @@
             <div class="flex flex-col w-full">
                 <span id="over_label">Поиск по наименованию</span>
                 <AutoComplete v-model="NameSearch" inputId="over_label" :suggestions="NameItems" optionLabel="name"
-                    @complete="search" dropdown size="large"
-                    class="w-full " />
+                    @complete="search" dropdown size="large" class="w-full " />
             </div>
 
             <div class="relative" variant="over">
@@ -17,28 +16,28 @@
             </div>
             <div class="relative" variant="over">
                 <span id="lb">Приоритет</span>
-                <Listbox aria-labelledby="lb"  :options="['Высокий' , 'Средний' ,'Низкий']" 
+                <Listbox aria-labelledby="lb" :options="['Высокий', 'Средний', 'Низкий']"
                     class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
             <div class="relative" variant="over">
                 <span id="lb">Депортамент</span>
-                <AutoComplete :disabled="!DeportamentItems.length" v-model="DeportamentSelect" inputId="over_label1"  :suggestions="DeportamentItems" optionLabel="name"
-                    @complete="search" dropdown size="large" placeholder="Выберите депортамент"
-                    class="w-full " />
+                <AutoComplete :disabled="!DeportamentItems.length" v-model="DeportamentSelect" inputId="over_label1"
+                    :suggestions="DeportamentItems" optionLabel="name" @complete="search" dropdown size="large"
+                    placeholder="Выберите депортамент" class="w-full " />
             </div>
             <div class="relative" variant="over">
                 <span id="lb">Организатор</span>
-                <AutoComplete :disabled="!DeportamentSelect" v-model="OrganizersSelect" inputId="over_label1"  :suggestions="OrganizersItems" optionLabel="name"
-                    @complete="search" dropdown size="large" placeholder="Выберите организатора"
-                    class="w-full " />
+                <AutoComplete :disabled="!DeportamentSelect" v-model="OrganizersSelect" inputId="over_label1"
+                    :suggestions="OrganizersItems" optionLabel="name" @complete="search" dropdown size="large"
+                    placeholder="Выберите организатора" class="w-full " />
             </div>
             <div class="relative" variant="over">
                 <span id="lb">Средство проведения</span>
-                <AutoComplete :disabled="!OrganizersSelect" v-model="OrganizersSelect" inputId="over_label1"  :suggestions="['  ']" optionLabel="name"
-                    @complete="search" dropdown size="large" placeholder="Выберите организатора"
-                    class="w-full " />
+                <AutoComplete :disabled="!OrganizersSelect" v-model="OrganizersSelect" inputId="over_label1"
+                    :suggestions="['  ']" optionLabel="name" @complete="search" dropdown size="large"
+                    placeholder="Выберите организатора" class="w-full " />
             </div>
-            
+
         </div>
     </div>
 </template>
@@ -120,7 +119,7 @@ function buildUrl(params) {
 
 
 async function search(e) {
-   
+
     console.log(DeportamentItems.value)
     const url = buildUrl({
         filter: NameSearch.value,
@@ -164,6 +163,7 @@ async function GetDeportament() {
 #over_label {
     width: 100%;
 }
+
 #over_label1 {
     width: 100%;
 }
