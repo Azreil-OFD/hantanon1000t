@@ -60,7 +60,7 @@
 <script setup>
 import { MainButton,useWebApp  } from 'vue-tg'
 import { Toast, useToast } from 'primevue';
-import { nextTick, ref, watch } from 'vue';
+import { nextTick, onMounted, ref, watch } from 'vue';
 const toast = useToast()
 const tg = ref(null)
 const userInitialData = ref(null)
@@ -68,7 +68,7 @@ const authToken = ref('Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7I
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
-nextTick(() => {
+onMounted(() => {
         tg = useWebApp();
         userInitialData = tg.initData;
         MainButton.setText("Поиск")
