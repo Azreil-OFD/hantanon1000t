@@ -64,16 +64,20 @@ const toast = useToast()
 const tg = ref(null)
 const userInitialData = ref(null)
 const authToken = ref('Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImlkIjo1NTMsImRlcGFydG1lbnRfaWQiOjIsInBvc3QiOm51bGwsInBlcm1pc3Npb25zIjpbImdyb3VwLmNyZWF0ZSIsInVzZXIuY3JlYXRlX3B1YmxpYyIsInBlcm1hbmVudF9yb29tLmxpc3QiLCJtZWV0aW5nLmxpc3QiLCJyb2xlLmxpc3QiLCJyb29tLmxpc3QiLCJidWlsZGluZy5saXN0IiwiZ3JvdXAuZGVsZXRlIiwiZGVwYXJ0bWVudC5saXN0Iiwic3RhdGlzdGljcy5saXN0IiwiZ3JvdXAubGlzdCIsImZpbGUubGlzdCIsInNldHRpbmcubGlzdCIsImdyb3VwLnVwZGF0ZSIsImV2ZW50Lmxpc3QiLCJlbWFpbF90ZW1wbGF0ZXMubGlzdCIsIm1lZXRpbmcudXBkYXRlIiwibWVldGluZy5jcmVhdGUiLCJtZWV0aW5nLmRlbGV0ZSIsInJvbGUucGVybWlzc2lvbnNfbGlzdCIsImZpbGUuY3JlYXRlIiwidXNlci51cGRhdGVfcHVibGljIiwidXNlci5saXN0IiwibXVuaWNpcGFsX2FyZWEubGlzdCJdLCJsb2dpbiI6ImhhbnRhdG9uMTAiLCJlbWFpbCI6ImhhbnRhdG9uMTAuaEBtYWlsLnJ1IiwibGFzdF9uYW1lIjoiXHUwNDI1XHUwNDMwXHUwNDNkXHUwNDQyXHUwNDMwXHUwNDQyXHUwNDNlXHUwNDNkXHUwNDNlXHUwNDMyIiwiZmlyc3RfbmFtZSI6Ilx1MDQyNVx1MDQzMFx1MDQzZFx1MDQ0Mlx1MDQzMFx1MDQ0Mlx1MDQzZVx1MDQzZCIsIm1pZGRsZV9uYW1lIjoiIiwiYmlydGhkYXkiOm51bGwsInBob25lIjpudWxsLCJ1cGRhdGVkX2F0IjoxNzMyOTQ4NDU4LjAsInByaW9yaXR5IjoyLCJyb2xlcyI6W3sibmFtZSI6Ilx1MDQxZVx1MDQ0MFx1MDQzM1x1MDQzMFx1MDQzZFx1MDQzOFx1MDQzN1x1MDQzMFx1MDQ0Mlx1MDQzZVx1MDQ0MCIsImRlc2NyaXB0aW9uIjoiXHUwNDFlXHUwNDQwXHUwNDMzXHUwNDMwXHUwNDNkXHUwNDM4XHUwNDM3XHUwNDMwXHUwNDQyXHUwNDNlXHUwNDQwIFx1MDQzMlx1MDQzOFx1MDQzNFx1MDQzNVx1MDQzZVx1MDQzYVx1MDQzZVx1MDQzZFx1MDQ0NFx1MDQzNVx1MDQ0MFx1MDQzNVx1MDQzZFx1MDQ0Nlx1MDQzOFx1MDQzOSIsImlkIjozLCJwZXJtaXNzaW9ucyI6WyJidWlsZGluZy5saXN0IiwiZGVwYXJ0bWVudC5saXN0IiwiZW1haWxfdGVtcGxhdGVzLmxpc3QiLCJldmVudC5saXN0IiwiZmlsZS5saXN0IiwibWVldGluZy5jcmVhdGUiLCJtZWV0aW5nLmRlbGV0ZSIsIm1lZXRpbmcubGlzdCIsIm1lZXRpbmcudXBkYXRlIiwibXVuaWNpcGFsX2FyZWEubGlzdCIsInJvbGUubGlzdCIsInJvbGUucGVybWlzc2lvbnNfbGlzdCIsInJvb20ubGlzdCIsInNldHRpbmcubGlzdCIsInVzZXIubGlzdCIsInN0YXRpc3RpY3MubGlzdCIsImZpbGUuY3JlYXRlIiwicGVybWFuZW50X3Jvb20ubGlzdCIsImdyb3VwLmxpc3QiLCJncm91cC5jcmVhdGUiLCJncm91cC51cGRhdGUiLCJncm91cC5kZWxldGUiLCJwZXJtYW5lbnRfcm9vbS5saXN0IiwidXNlci5jcmVhdGVfcHVibGljIiwidXNlci51cGRhdGVfcHVibGljIl19XX0sInRva2VuX2V4cGlyZWRfYXQiOjE3MzMwMTIwMTkuMCwidG9rZW5fY3JlYXRlZF9hdCI6MTczMjk5NzYxOS4wLCJyZWZyZXNoX3Rva2VuIjoiZXlKMGVYQWlPaUpLVjFRaUxDSmhiR2NpT2lKSVV6STFOaUo5LmV5SjFjMlZ5WDJsa0lqbzFOVE1zSW1WNGNDSTZNVGN6TXpVMU56Z3pOQzR3TENKMWNHUWlPakUzTXpJNU5EZzBOVGd1TUN3aWRIbHdJam9pY21WbWNtVnphQ0o5LmE3LWJaYzZ2XzJlTDYtUWNUQmZEbnVPRHhpQlBIdUI5VTF4bWFEX2Y2MWMifQ.ZXIm5tzOhB7x8oQdE33-Aq_ty3V6RzmEXszn4iFiOR8');
-nextTick(() => {
-     try {
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+nextTick(async () => {
+    try {
         tg = window.Telegram.WebApp;
         userInitialData = tg.initData;
         tg.MainButton.setText("Поиск")
         tg.MainButton.onClick(formatRequestData)
+        await sleep(100)
         tg.MainButton.show()
-     } catch (error) {
+    } catch (error) {
         console.log('Пользователь не из телеграмма')
-     }
+    }
 
 
 })
@@ -281,17 +285,17 @@ function formatRequestData() {
         },
         body: JSON.stringify(requestData),
     })
-    .then(response => response.json())
-    .then(data => {
-        // Обрабатываем ответ от сервера
-        console.log('Success:', data);
-        toast.add({ severity: 'success', summary: 'Успешно отправлено', detail: 'Данные успешно отправлены.', life: 3000 });
-    })
-    .catch(error => {
-        // Обрабатываем ошибку при отправке данных
-        console.error('Error:', error);
-        toast.add({ severity: 'error', summary: 'Ошибка при отправке данных', detail: 'Произошла ошибка при отправке запроса.', life: 3000 });
-    });
+        .then(response => response.json())
+        .then(data => {
+            // Обрабатываем ответ от сервера
+            console.log('Success:', data);
+            toast.add({ severity: 'success', summary: 'Успешно отправлено', detail: 'Данные успешно отправлены.', life: 3000 });
+        })
+        .catch(error => {
+            // Обрабатываем ошибку при отправке данных
+            console.error('Error:', error);
+            toast.add({ severity: 'error', summary: 'Ошибка при отправке данных', detail: 'Произошла ошибка при отправке запроса.', life: 3000 });
+        });
 }
 
 </script>
