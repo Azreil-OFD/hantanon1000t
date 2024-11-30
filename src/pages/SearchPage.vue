@@ -53,6 +53,7 @@
                     optionLabel="name"
                     class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
+            <MainButton text="Поиск" @click="formatRequestData" />
         </div>
     </div>
 </template>
@@ -69,11 +70,8 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
 onMounted(() => {
-        tg = useWebApp();
-        userInitialData = tg.initData;
-        MainButton.setText("Поиск")
-        MainButton.onClick(formatRequestData)
-        MainButton.show()
+        tg.value = useWebApp();
+        userInitialData.value = tg.initData;
 })
 
 // Переменные для данных формы
