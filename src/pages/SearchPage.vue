@@ -1,5 +1,4 @@
 <template>
-
     <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
         <Toast />
         <h1 class="p-5 text-3xl">Поиск</h1>
