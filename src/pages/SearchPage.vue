@@ -59,7 +59,7 @@
 </template>
 
 <script setup>
-import { MainButton,useWebApp  } from 'vue-tg'
+import { MainButton, useWebApp } from 'vue-tg'
 import { Toast, useToast } from 'primevue';
 import { nextTick, onMounted, ref, watch } from 'vue';
 const toast = useToast()
@@ -70,8 +70,8 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
 onMounted(() => {
-        tg.value = useWebApp();
-        userInitialData.value = tg.initData;
+    tg.value = useWebApp();
+    userInitialData.value = tg.initData;
 })
 
 // Переменные для данных формы
@@ -266,7 +266,7 @@ function formatRequestData() {
     if (userInitialData.value !== null) {
         toast.add({ severity: 'info', summary: 'Вы вошли с телеграмма', detail: 'Поздравляю!', life: 3000 });
     }
-
+    console.log(userInitialData.value)
     // Отправка данных через curl с использованием fetch API
     fetch('https://vcc-bot.cloudpub.ru/api/vcc/meetings/', {
         method: 'POST',
