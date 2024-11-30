@@ -250,11 +250,10 @@ function buildApiUrl(params) {
 
 function formatRequestData() {
     if (searchName.value === "" || Object.keys(searchName.value).length === 0) {
-        toast.add({ severity: 'error', summary: 'Не заполненное поле', detail: 'Поле "Поиск по наименованию" объязательно!', life: 3000 })
-        return
+        toast.add({ severity: 'error', summary: 'Не заполненное поле', detail: 'Поле "Поиск по наименованию" объязательно!', life: 3000 });
+        return;
     }
 
-    
     const requestData = {
         from_datetime: selectedDates.value.length >= 1 ? selectedDates.value[0].toISOString() : null,
         to_datetime: selectedDates.value.length === 2 && selectedDates.value[1] !== null ? selectedDates.value[1].toISOString() : null,
@@ -266,11 +265,33 @@ function formatRequestData() {
         state: selectedStatus.value.length > 0 ? selectedStatus.value.map(item => item.code) : [selectedStatus.value],  // Состояния (массив кодов)
         page: 1,
     };
-    
-   if(userInitialData.value !== null) {
-    toast.add({ severity: 'info', summary: 'Вы вошли с телеграмма', detail: 'Поздравляю!', life: 3000 })
-   }
 
+    // Выводим сообщение, если есть данные для пользователя
+    if (userInitialData.value !== null) {
+        toast.add({ severity: 'info', summary: 'Вы вошли с телеграмма', detail: 'Поздравляю!', life: 3000 });
+    }
+
+    // Отправка данных через curl с использованием fetch API
+    fetch('https://vcc-bot.cloudpub.ru/api/vcc/meetings/', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'init-data': userInitialData.value || '', // Здесь передаем initialData пользователя
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestData),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Обрабатываем ответ от сервера
+        console.log('Success:', data);
+        toast.add({ severity: 'success', summary: 'Успешно отправлено', detail: 'Данные успешно отправлены.', life: 3000 });
+    })
+    .catch(error => {
+        // Обрабатываем ошибку при отправке данных
+        console.error('Error:', error);
+        toast.add({ severity: 'error', summary: 'Ошибка при отправке данных', detail: 'Произошла ошибка при отправке запроса.', life: 3000 });
+    });
 }
 
 </script>
