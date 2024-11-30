@@ -7,9 +7,9 @@ import './index.css'
 
 import SearchPage from "./pages/SearchPage.vue";
 import PageTest from "./pages/PageTest.vue";
-
+import ToastService from 'primevue/toastservice';
 const app = createApp(App);
-
+app.use(ToastService);
 const routes = [
     { path: "/search", component: SearchPage },
     { path: "/", component: PageTest },
