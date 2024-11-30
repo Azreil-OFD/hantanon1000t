@@ -58,6 +58,7 @@
 </template>
 
 <script setup>
+import { MainButton,useWebApp  } from 'vue-tg'
 import { Toast, useToast } from 'primevue';
 import { nextTick, ref, watch } from 'vue';
 const toast = useToast()
@@ -70,12 +71,12 @@ function sleep(ms) {
 nextTick(async () => {
     try {
         await sleep(1000)
-        tg = window.Telegram.WebApp;
+        tg = useWebApp();
         userInitialData = tg.initData;
-        tg.MainButton.setText("Поиск")
-        tg.MainButton.onClick(formatRequestData)
+        MainButton.setText("Поиск")
+        MainButton.onClick(formatRequestData)
         await sleep(100)
-        tg.MainButton.show()
+        MainButton.show()
     } catch (error) {
         console.log('Пользователь не из телеграмма')
     }
