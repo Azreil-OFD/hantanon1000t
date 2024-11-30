@@ -251,8 +251,8 @@ function formatRequestData() {
     // }
 
     const requestData = {
-        from_datetime: selectedDates.value.length >= 1 ? selectedDates.value[0].toISOString() : null,
-        to_datetime: selectedDates.value.length === 2 && selectedDates.value[1] !== null ? selectedDates.value[1].toISOString() : null,
+        from_datetime: selectedDates.value.length >= 1 ? selectedDates.value[0].toISOString().split('T')[0] : null,
+        to_datetime: selectedDates.value.length === 2 && selectedDates.value[1] !== null ? selectedDates.value[1].toISOString().split('T')[0] : null,
         // filter: searchName.value !== null ? JSON.parse(JSON.stringify(searchName.value)) : "",
         // priority: selectedPriority.value ? selectedPriority.value.code : null,
         // department_id: selectedDepartment.value ? selectedDepartment.value.id : null,
