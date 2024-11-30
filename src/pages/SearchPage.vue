@@ -69,6 +69,7 @@ function sleep(ms) {
 }
 nextTick(async () => {
     try {
+        await sleep(1000)
         tg = window.Telegram.WebApp;
         userInitialData = tg.initData;
         tg.MainButton.setText("Поиск")
