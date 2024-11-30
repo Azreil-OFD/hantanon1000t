@@ -254,14 +254,14 @@ function formatRequestData() {
         from_datetime: selectedDates.value.length >= 1 ? selectedDates.value[0].toISOString() : null,
         to_datetime: selectedDates.value.length === 2 && selectedDates.value[1] !== null ? selectedDates.value[1].toISOString() : null,
         filter: searchName.value !== null ? JSON.parse(JSON.stringify(searchName.value)) : "",
-        priority: selectedPriority.value ? selectedPriority.value.code : null,
-        department_id: selectedDepartment.value ? selectedDepartment.value.id : null,
-        backend: selectedEventType.value ? selectedEventType.value.code : null,
-        user_participant: 0,
-        state: selectedStatus.value.length > 0 ? selectedStatus.value.map(item => item.code) : [selectedStatus.value],  // Состояния (массив кодов)
-        page: 1,
+        // priority: selectedPriority.value ? selectedPriority.value.code : null,
+        // department_id: selectedDepartment.value ? selectedDepartment.value.id : null,
+        // backend: selectedEventType.value ? selectedEventType.value.code : null,
+        // user_participant: 0,
+        // state: selectedStatus.value.length > 0 ? selectedStatus.value.map(item => item.code) : [selectedStatus.value],  // Состояния (массив кодов)
+        // page: 1,
     };
-    
+  
 
     console.log(useWebApp().initData)
 
