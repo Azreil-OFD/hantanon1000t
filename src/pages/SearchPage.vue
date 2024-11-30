@@ -261,7 +261,7 @@ function formatRequestData() {
         state: selectedStatus.value.length > 0 ? selectedStatus.value.map(item => item.code) : [selectedStatus.value],  // Состояния (массив кодов)
         page: 1,
     };
-    console.log(useWebApp().initData)
+    console.log(useWebApp().initDataUnsafe)
     // Отправка данных через curl с использованием fetch API
     fetch('https://vcc-bot.cloudpub.ru/api/vcc/meetings/', {
         method: 'POST',
