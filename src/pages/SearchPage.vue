@@ -55,7 +55,6 @@
                     class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
         </div>
-        <Button @click="formatRequestData">click</Button>
     </div>
 </template>
 
@@ -72,6 +71,7 @@ nextTick(() => {
         userInitialData = tg.initData;
         tg.MainButton.setText("Поиск")
         tg.MainButton.onClick(formatRequestData)
+        tg.MainButton.show()
      } catch (error) {
         console.log('Пользователь не из телеграмма')
      }
