@@ -68,20 +68,12 @@ const authToken = ref('Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7I
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
-nextTick(async () => {
-    try {
-        await sleep(1000)
+nextTick(() => {
         tg = useWebApp();
         userInitialData = tg.initData;
         MainButton.setText("Поиск")
         MainButton.onClick(formatRequestData)
-        await sleep(100)
         MainButton.show()
-    } catch (error) {
-        console.log('Пользователь не из телеграмма')
-    }
-
-
 })
 
 // Переменные для данных формы
